@@ -1,0 +1,48 @@
+Column,Role,Confidence,Data Type,Unique Values,Null Count,Cardinality Note
+ts,Contextual,HIGH,int64,392633,0,⚠️ High cardinality
+src_ip,Identifier,HIGH,object,23414,0,Medium cardinality
+src_port,Contextual,HIGH,int64,65536,0,⚠️ High cardinality
+dst_ip,Identifier,HIGH,object,6523,0,Medium cardinality
+dst_port,Contextual,HIGH,int64,65536,0,⚠️ High cardinality
+proto,Contextual,HIGH,object,3,0,Low cardinality
+service,Contextual,HIGH,object,40,0,Low cardinality
+duration,Behavioral,HIGH,float64,3720375,0,⚠️ High cardinality
+src_bytes,Behavioral,HIGH,object,57113,0,⚠️ High cardinality
+dst_bytes,Behavioral,HIGH,int64,52193,0,⚠️ High cardinality
+conn_state,Behavioral,HIGH,object,13,0,Low cardinality
+missed_bytes,Behavioral,HIGH,int64,8593,0,⚠️ High cardinality
+src_pkts,Behavioral,HIGH,int64,3714,0,⚠️ High cardinality
+src_ip_bytes,Identifier,HIGH,int64,12153,0,Medium cardinality
+dst_pkts,Behavioral,HIGH,int64,1212,0,⚠️ High cardinality
+dst_ip_bytes,Identifier,HIGH,int64,10641,0,Medium cardinality
+dns_query,Unknown - Needs Review,LOW,object,17880,0,⚠️ High cardinality
+dns_qclass,Label/Ground Truth,HIGH,int64,5,0,Low cardinality
+dns_qtype,Label/Ground Truth,HIGH,int64,13,0,Low cardinality
+dns_rcode,Unknown - Needs Review,LOW,int64,5,0,Low cardinality
+dns_AA,Unknown - Needs Review,LOW,object,3,0,Low cardinality
+dns_RD,Unknown - Needs Review,LOW,object,3,0,Low cardinality
+dns_RA,Unknown - Needs Review,LOW,object,3,0,Low cardinality
+dns_rejected,Unknown - Needs Review,LOW,object,3,0,Low cardinality
+ssl_version,Unknown - Needs Review,LOW,object,6,0,Low cardinality
+ssl_cipher,Unknown - Needs Review,LOW,object,21,0,Low cardinality
+ssl_resumed,Unknown - Needs Review,LOW,object,3,0,Low cardinality
+ssl_established,Unknown - Needs Review,LOW,object,3,0,Low cardinality
+ssl_subject,Unknown - Needs Review,LOW,object,9,0,Low cardinality
+ssl_issuer,Unknown - Needs Review,LOW,object,8,0,Low cardinality
+http_trans_depth,Unknown - Needs Review,LOW,object,11,0,Low cardinality
+http_method,Unknown - Needs Review,LOW,object,6,0,Low cardinality
+http_uri,Unknown - Needs Review,LOW,object,1068,0,⚠️ High cardinality
+http_referrer,Unknown - Needs Review,LOW,object,5,0,Low cardinality
+http_version,Unknown - Needs Review,LOW,object,2,0,Low cardinality
+http_request_body_len,Unknown - Needs Review,LOW,int64,18,0,Low cardinality
+http_response_body_len,Unknown - Needs Review,LOW,int64,225,0,Medium cardinality
+http_status_code,Unknown - Needs Review,LOW,int64,10,0,Low cardinality
+http_user_agent,Unknown - Needs Review,LOW,object,121,0,Medium cardinality
+http_orig_mime_types,Label/Ground Truth,HIGH,object,4,0,Low cardinality
+http_resp_mime_types,Label/Ground Truth,HIGH,object,10,0,Low cardinality
+weird_name,Unknown - Needs Review,LOW,object,23,0,Low cardinality
+weird_addl,Unknown - Needs Review,LOW,object,7,0,Low cardinality
+weird_notice,Unknown - Needs Review,LOW,object,2,0,Low cardinality
+label,Label/Ground Truth,HIGH,int64,2,0,Low cardinality
+type,Label/Ground Truth,HIGH,object,10,0,Low cardinality
+uid,Identifier,HIGH,object,999966,21339021,Medium cardinality
