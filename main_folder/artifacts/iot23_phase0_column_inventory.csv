@@ -1,0 +1,23 @@
+column,dtype,non_null_count,null_count,null_pct,unique_count
+ts,object,1446662,0,0.0,1446662
+uid,object,1446662,0,0.0,1446662
+id.orig_h,object,1446662,0,0.0,3297
+id.orig_p,float64,1446662,0,0.0,62295
+id.resp_h,object,1446662,0,0.0,1096204
+id.resp_p,float64,1446662,0,0.0,29265
+proto,object,1446662,0,0.0,3
+service,object,1446662,0,0.0,7
+duration,object,1446662,0,0.0,60004
+orig_bytes,object,1446662,0,0.0,480
+resp_bytes,object,1446662,0,0.0,598
+conn_state,object,1446662,0,0.0,13
+local_orig,object,1446662,0,0.0,1
+local_resp,object,1446662,0,0.0,1
+missed_bytes,float64,1446662,0,0.0,24
+history,object,1446662,0,0.0,171
+orig_pkts,float64,1446662,0,0.0,190
+orig_ip_bytes,float64,1446662,0,0.0,1138
+resp_pkts,float64,1446662,0,0.0,142
+resp_ip_bytes,float64,1446662,0,0.0,1040
+tunnel_parents   label   detailed-label,object,1446662,0,0.0,19
+source_scenario,object,1446662,0,0.0,23

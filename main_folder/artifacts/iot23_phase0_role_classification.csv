@@ -1,0 +1,23 @@
+Column,Role,Confidence,dtype,unique_count,null_count,Cardinality Note
+ts,Contextual,HIGH,object,1446662,0,⚠️ High
+uid,Identifier,HIGH,object,1446662,0,OK
+id.orig_h,Identifier,HIGH,object,3297,0,OK
+id.orig_p,Contextual,HIGH,float64,62295,0,⚠️ High
+id.resp_h,Identifier,HIGH,object,1096204,0,OK
+id.resp_p,Contextual,HIGH,float64,29265,0,⚠️ High
+proto,Contextual,HIGH,object,3,0,OK
+service,Contextual,HIGH,object,7,0,OK
+duration,Behavioral,HIGH,object,60004,0,⚠️ High
+orig_bytes,Behavioral,HIGH,object,480,0,OK
+resp_bytes,Behavioral,HIGH,object,598,0,OK
+conn_state,Behavioral,HIGH,object,13,0,OK
+local_orig,Contextual,HIGH,object,1,0,OK
+local_resp,Contextual,HIGH,object,1,0,OK
+missed_bytes,Metadata/Auxiliary,HIGH,float64,24,0,OK
+history,Behavioral,HIGH,object,171,0,OK
+orig_pkts,Behavioral,HIGH,float64,190,0,OK
+orig_ip_bytes,Behavioral,HIGH,float64,1138,0,⚠️ High
+resp_pkts,Behavioral,HIGH,float64,142,0,OK
+resp_ip_bytes,Behavioral,HIGH,float64,1040,0,⚠️ High
+tunnel_parents   label   detailed-label,Contextual,MEDIUM,object,19,0,OK
+source_scenario,Metadata/Auxiliary,HIGH,object,23,0,OK

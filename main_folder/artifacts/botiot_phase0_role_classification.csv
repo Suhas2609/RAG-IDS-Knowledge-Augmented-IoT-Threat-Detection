@@ -1,0 +1,48 @@
+column,role,note
+pkSeqID,Identifier,IP/sequence — identity leakage risk — exclude from model
+stime,Temporal,Timestamps — use only for time-based train/test splitting; exclude from features
+flgs,Contextual,"Protocol/state/flags — encode as ordinal/one-hot, then include"
+flgs_number,Contextual,"Protocol/state/flags — encode as ordinal/one-hot, then include"
+proto,Contextual,"Protocol/state/flags — encode as ordinal/one-hot, then include"
+proto_number,Contextual,"Protocol/state/flags — encode as ordinal/one-hot, then include"
+saddr,Identifier,IP/sequence — identity leakage risk — exclude from model
+sport,Identifier,IP/sequence — identity leakage risk — exclude from model
+daddr,Identifier,IP/sequence — identity leakage risk — exclude from model
+dport,Identifier,IP/sequence — identity leakage risk — exclude from model
+pkts,Behavioral,Direct signal of attack behavior — include in feature vector (normalize in Phase 1)
+bytes,Behavioral,Direct signal of attack behavior — include in feature vector (normalize in Phase 1)
+state,Contextual,"Protocol/state/flags — encode as ordinal/one-hot, then include"
+state_number,Contextual,"Protocol/state/flags — encode as ordinal/one-hot, then include"
+ltime,Temporal,Timestamps — use only for time-based train/test splitting; exclude from features
+seq,Temporal,Timestamps — use only for time-based train/test splitting; exclude from features
+dur,Behavioral,Direct signal of attack behavior — include in feature vector (normalize in Phase 1)
+mean,Behavioral,Direct signal of attack behavior — include in feature vector (normalize in Phase 1)
+stddev,Behavioral,Direct signal of attack behavior — include in feature vector (normalize in Phase 1)
+sum,Behavioral,Direct signal of attack behavior — include in feature vector (normalize in Phase 1)
+min,Behavioral,Direct signal of attack behavior — include in feature vector (normalize in Phase 1)
+max,Behavioral,Direct signal of attack behavior — include in feature vector (normalize in Phase 1)
+spkts,Behavioral,Direct signal of attack behavior — include in feature vector (normalize in Phase 1)
+dpkts,Behavioral,Direct signal of attack behavior — include in feature vector (normalize in Phase 1)
+sbytes,Behavioral,Direct signal of attack behavior — include in feature vector (normalize in Phase 1)
+dbytes,Behavioral,Direct signal of attack behavior — include in feature vector (normalize in Phase 1)
+rate,Behavioral,Direct signal of attack behavior — include in feature vector (normalize in Phase 1)
+srate,Behavioral,Direct signal of attack behavior — include in feature vector (normalize in Phase 1)
+drate,Behavioral,Direct signal of attack behavior — include in feature vector (normalize in Phase 1)
+TnBPSrcIP,Statistical,UNSW window-aggregated stats — include; likely need log-transform + normalization
+TnBPDstIP,Statistical,UNSW window-aggregated stats — include; likely need log-transform + normalization
+TnP_PSrcIP,Statistical,UNSW window-aggregated stats — include; likely need log-transform + normalization
+TnP_PDstIP,Statistical,UNSW window-aggregated stats — include; likely need log-transform + normalization
+TnP_PerProto,Statistical,UNSW window-aggregated stats — include; likely need log-transform + normalization
+TnP_Per_Dport,Statistical,UNSW window-aggregated stats — include; likely need log-transform + normalization
+AR_P_Proto_P_SrcIP,Statistical,UNSW window-aggregated stats — include; likely need log-transform + normalization
+AR_P_Proto_P_DstIP,Statistical,UNSW window-aggregated stats — include; likely need log-transform + normalization
+N_IN_Conn_P_DstIP,Statistical,UNSW window-aggregated stats — include; likely need log-transform + normalization
+N_IN_Conn_P_SrcIP,Statistical,UNSW window-aggregated stats — include; likely need log-transform + normalization
+AR_P_Proto_P_Sport,Statistical,UNSW window-aggregated stats — include; likely need log-transform + normalization
+AR_P_Proto_P_Dport,Statistical,UNSW window-aggregated stats — include; likely need log-transform + normalization
+Pkts_P_State_P_Protocol_P_DestIP,Statistical,UNSW window-aggregated stats — include; likely need log-transform + normalization
+Pkts_P_State_P_Protocol_P_SrcIP,Statistical,UNSW window-aggregated stats — include; likely need log-transform + normalization
+attack,Label,Prediction target — never included in feature vector
+category,Label,Prediction target — never included in feature vector
+subcategory,Label,Prediction target — never included in feature vector
+source_file,Metadata,Source provenance — no behavioral signal; drop before training

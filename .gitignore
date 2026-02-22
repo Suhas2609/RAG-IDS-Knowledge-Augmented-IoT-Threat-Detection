@@ -6,8 +6,10 @@
 # LARGE DATA FILES (DO NOT COMMIT TO GITHUB)
 # ============================================================================
 
-# Dataset files
+# Dataset files (raw data files excluded; analysis artifacts in main_folder/artifacts/ are allowed)
 *.csv
+# Allow Phase 0 analysis artifact CSVs (small, human-readable summaries — NOT raw data)
+!main_folder/artifacts/*.csv
 *.csv.gz
 *.parquet
 *.h5

@@ -1,0 +1,47 @@
+column,description,data_type,behavioral_relevance,ton_iot_equiv,iot23_equiv
+pkSeqID,Monotonically increasing packet/flow sequence ID. Row identifier with ,int64,NONE — drop before modeling,—,—
+stime,Flow start time as Unix epoch (float). Used for temporal analysis and ,float64,MEDIUM — temporal context; exclude from feature vector or bi,ts,ts
+ltime,Flow last-packet time as Unix epoch (float). ltime - stime ≈ dur.,float64,LOW — redundant with dur; use dur instead,—,—
+flgs,"Argus flow flags string (e.g., 'e', 'e s', '  '). Captures TCP/UDP/ARP",str/category,HIGH — encodes SYN/RST/FIN/ACK patterns; use flgs_number or ,—,history (partial analog)
+flgs_number,Numeric encoding of flgs. Integer representation of Argus flag bitmask,int64,HIGH — numeric form of flgs; prefer over string flgs for ML,—,—
+proto,"Layer-4 protocol name string: 'tcp', 'udp', 'arp', 'icmp', etc.",str/category,HIGH — encode as ordinal or one-hot; DoS often uses one prot,proto,proto
+proto_number,"Numeric encoding of proto. IANA protocol numbers (TCP=6, UDP=17, ICMP=",int64,HIGH — numeric form of proto,—,—
+saddr,Source IP address string. Identity feature — may cause leakage if used,str,"IDENTITY LEAKAGE — use behavioral aggregates (TnBPSrcIP, etc",src_ip,id.orig_h
+sport,Source port number. -1 for ARP and other non-port protocols.,int64,"MEDIUM — categorical, NOT ordinal; high ephemeral ports indi",src_port,id.orig_p
+daddr,Destination IP address string.,str,IDENTITY LEAKAGE — repeated targets suggest DDoS victim,dst_ip,id.resp_h
+dport,Destination port number. -1 for ARP and other non-port protocols.,int64,"HIGH — well-known ports (80, 443, 22) vs random ports indica",dst_port,id.resp_p
+pkts,Total packet count (spkts + dpkts). High values indicate flood attacks,int64,HIGH — use log-transform in Phase 1 due to skew,—,orig_pkts + resp_pkts (sum)
+bytes,Total byte count (sbytes + dbytes). Key volume indicator.,int64,HIGH — exfiltration = large bytes; DoS = many pkts with smal,—,orig_ip_bytes + resp_ip_bytes (approx)
+state,"Argus connection state string (RST, CON, FIN, INT, REQ, ACC, CLO, etc.",str/category,HIGH — RST-heavy = scan/DoS; CON = established; FIN = clean ,—,conn_state (similar concept via Zeek)
+state_number,Numeric encoding of state. Prefer over state string for ML.,int64,HIGH — numeric form of state,—,—
+seq,Argus flow transaction sequence number. Monotonically increases within,int64,LOW — sequence context only; not a behavioral feature,—,—
+dur,Flow duration in seconds (ltime - stime). Zero for sub-millisecond flo,float64,HIGH — very short = probes/scans; very long = exfiltration /,duration,duration (stored as string in Zeek)
+mean,Mean of per-packet statistics (IAT or size) over the flow.,float64,MEDIUM — regular mean = automated traffic; irregular = human,—,—
+stddev,Standard deviation of per-packet statistics. Zero = perfectly uniform ,float64,MEDIUM — zero stddev in DoS floods is a strong attack indica,—,—
+sum,Sum of packet size statistics over the flow. Related to bytes.,float64,LOW — redundant with bytes,—,—
+min,Minimum packet size in flow.,float64,MEDIUM — min≈max = uniform flood,—,—
+max,Maximum packet size in flow.,float64,MEDIUM — max = MTU-sized = large payload transfer,—,—
+spkts,Source-to-destination packet count.,int64,HIGH — asymmetric spkts≫dpkts = one-way flood,—,orig_pkts
+dpkts,Destination-to-source packet count.,int64,HIGH — zero dpkts = unanswered scan,—,resp_pkts
+sbytes,Source-to-destination byte count.,int64,HIGH — large sbytes = upload / exfiltration,—,orig_ip_bytes
+dbytes,Destination-to-source byte count.,int64,HIGH — zero dbytes + high sbytes = attack probe / flood,—,resp_ip_bytes
+rate,Overall flow rate in bytes/second. rate = bytes / dur.,float64,HIGH — extreme rate = DDoS; log-transform required,rate,—
+srate,Source-side flow rate (sbytes / dur).,float64,HIGH — srate≫drate = upload flood,—,—
+drate,Destination-side flow rate (dbytes / dur).,float64,HIGH — drate≫srate = download flood / amplification,—,—
+TnBPSrcIP,Total bytes from source IP in a recent time window. UNSW-engineered st,float64,HIGH — high value = this IP is sending a lot,—,—
+TnBPDstIP,Total bytes to destination IP in a recent time window.,float64,HIGH — high value = this IP is being flooded (DDoS victim),—,—
+TnP_PSrcIP,Total packets from source IP in a recent time window.,float64,HIGH — high = scanning / DoS src,—,—
+TnP_PDstIP,Total packets to destination IP in a recent time window.,float64,HIGH — high = target under attack,—,—
+TnP_PerProto,Total packets for this protocol in a recent time window. Captures prot,float64,HIGH — extreme value = protocol-specific flooding,—,—
+TnP_Per_Dport,Total packets to this destination port in a recent time window.,float64,"HIGH — high = port-specific attack (e.g., HTTP flood on port",—,—
+AR_P_Proto_P_SrcIP,Average rate: protocol × source IP in window.,float64,HIGH — captures per-protocol per-source flooding rate,—,—
+AR_P_Proto_P_DstIP,Average rate: protocol × destination IP in window.,float64,HIGH — captures DDoS victim under specific protocol,—,—
+N_IN_Conn_P_DstIP,Number of inbound connections to destination IP in window.,float64,HIGH — extreme = DDoS target,—,—
+N_IN_Conn_P_SrcIP,Number of inbound connections from source IP in window.,float64,HIGH — extreme = src is a botnet node,—,—
+AR_P_Proto_P_Sport,Average rate: protocol × source port in window.,float64,MEDIUM — ephemeral ports make this noisier,—,—
+AR_P_Proto_P_Dport,Average rate: protocol × destination port in window.,float64,HIGH — captures service-specific attack rate,—,—
+Pkts_P_State_P_Protocol_P_DestIP,Packets with this state × protocol × destination IP in window.,float64,HIGH — RST×TCP×specific_IP = targeted reset flooding,—,—
+Pkts_P_State_P_Protocol_P_SrcIP,Packets with this state × protocol × source IP in window.,float64,HIGH — captures stateful pattern per source,—,—
+attack,"Binary attack label: 0 = Normal traffic, 1 = Attack traffic.",int64,PRIMARY LABEL — target variable for binary classification,label,label (Malicious/Benign)
+category,"Attack category string: 'Normal', 'DoS', 'DDoS', 'Reconnaissance', 'Th",str/category,MULTI-CLASS LABEL — 5 categories; use for multi-class classi,type,detailed-label (partial)
+subcategory,"Fine-grained attack subtype: 'HTTP', 'UDP', 'TCP', 'Keylogging', 'Data",str/category,FINE-GRAINED LABEL — most specific class; use for hierarchic,type (partial),detailed-label
