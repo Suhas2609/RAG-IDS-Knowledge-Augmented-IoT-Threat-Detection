@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^Write-Host \"`n=== PHASE-1 CORRECTIONS VERIFICATION ===\" -ForegroundColor Cyan; Write-Host \"`n1\\. Feature Description Corrections:\" -ForegroundColor Yellow; Get-Content \"c:\\\\Users\\\\suhas\\\\OneDrive\\\\Desktop\\\\Capstone\\\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\\\artifacts\\\\phase1_retention_decisions\\.csv\" \\| Select-String \"dns_qclass\\|dns_qtype\\|http_orig_mime\\|http_resp_mime\\|src_ip_bytes\\|dst_ip_bytes\" \\| ForEach-Object \\{ \\$_ -replace ',KEEP,', ' -> ' \\} \\| Select-Object -First 6; Write-Host \"`n2\\. New Summary Table Added:\" -ForegroundColor Yellow; Get-Content \"c:\\\\Users\\\\suhas\\\\OneDrive\\\\Desktop\\\\Capstone\\\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\\\artifacts\\\\Phase_1_Decision_Summary_Report\\.md\" -Encoding UTF8 \\| Select-String \"Why Each Feature Category\" -Context 0,1 \\| Select-Object -First 3; Write-Host \"`n3\\. Artifact Updates:\" -ForegroundColor Yellow; Get-ChildItem \"c:\\\\Users\\\\suhas\\\\OneDrive\\\\Desktop\\\\Capstone\\\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\\\artifacts\" \\| Where-Object \\{\\$_\\.Name -like \"phase1\\*\" -or \\$_\\.Name -eq \"frozen_schema\\.json\" -or \\$_\\.Name -eq \"Phase_1_Decision_Summary_Report\\.md\"\\} \\| Select-Object Name, @\\{N='Size \\(KB\\)';E=\\{\\[math\\]::Round\\(\\$_\\.Length/1KB,1\\)\\}\\}, LastWriteTime \\| Format-Table -AutoSize$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
