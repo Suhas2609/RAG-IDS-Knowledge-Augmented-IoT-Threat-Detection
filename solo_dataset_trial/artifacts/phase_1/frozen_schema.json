@@ -1,0 +1,438 @@
+{
+  "schema_version": "1.0",
+  "created_date": "2026-01-31 14:41:11",
+  "dataset": "TON-IoT Processed Network",
+  "total_features": 33,
+  "dropped_features": 14,
+  "features": {
+    "duration": {
+      "decision": "KEEP",
+      "phase0_role": "Behavioral",
+      "data_type": "float64",
+      "placeholder_strategy": {
+        "type": "none",
+        "description": "No placeholders (numerical, always present)"
+      },
+      "scaling": {
+        "method": "robust_scale",
+        "rationale": "High skew (17.8), outliers expected in DoS attacks \u2192 RobustScaler"
+      }
+    },
+    "src_bytes": {
+      "decision": "KEEP",
+      "phase0_role": "Behavioral",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "none",
+        "description": "No placeholders"
+      },
+      "scaling": {
+        "method": "log_scale",
+        "rationale": "High skew (50.1), wide range \u2192 Log transform + StandardScaler"
+      }
+    },
+    "dst_bytes": {
+      "decision": "KEEP",
+      "phase0_role": "Behavioral",
+      "data_type": "int64",
+      "placeholder_strategy": {
+        "type": "none",
+        "description": "No placeholders"
+      },
+      "scaling": {
+        "method": "log_scale",
+        "rationale": "High skew (217.0), extreme values \u2192 Log transform + StandardScaler"
+      }
+    },
+    "src_pkts": {
+      "decision": "KEEP",
+      "phase0_role": "Behavioral",
+      "data_type": "int64",
+      "placeholder_strategy": {
+        "type": "none",
+        "description": "No placeholders"
+      },
+      "scaling": {
+        "method": "log_scale",
+        "rationale": "High skew (16.5), packet floods \u2192 Log transform + StandardScaler"
+      }
+    },
+    "dst_pkts": {
+      "decision": "KEEP",
+      "phase0_role": "Behavioral",
+      "data_type": "int64",
+      "placeholder_strategy": {
+        "type": "none",
+        "description": "No placeholders"
+      },
+      "scaling": {
+        "method": "log_scale",
+        "rationale": "High skew (47.3), wide range \u2192 Log transform + StandardScaler"
+      }
+    },
+    "src_ip_bytes": {
+      "decision": "KEEP",
+      "phase0_role": "Identifier",
+      "data_type": "int64",
+      "placeholder_strategy": {
+        "type": "none",
+        "description": "No placeholders"
+      },
+      "scaling": {
+        "method": "log_scale",
+        "rationale": "High skew (37.3) \u2192 Log transform + StandardScaler"
+      }
+    },
+    "dst_ip_bytes": {
+      "decision": "KEEP",
+      "phase0_role": "Identifier",
+      "data_type": "int64",
+      "placeholder_strategy": {
+        "type": "none",
+        "description": "No placeholders"
+      },
+      "scaling": {
+        "method": "log_scale",
+        "rationale": "High skew (185.8) \u2192 Log transform + StandardScaler"
+      }
+    },
+    "proto": {
+      "decision": "KEEP",
+      "phase0_role": "Contextual",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "none",
+        "description": "No placeholders (tcp/udp/icmp always present)"
+      },
+      "encoding": {
+        "method": "one_hot",
+        "rationale": "3 values (tcp/udp/icmp) \u2192 3 binary features"
+      }
+    },
+    "service": {
+      "decision": "KEEP",
+      "phase0_role": "Contextual",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "unknown_service",
+        "description": "'-' means Zeek couldn't identify service \u2192 Encode as 'UNKNOWN'"
+      },
+      "encoding": {
+        "method": "one_hot",
+        "rationale": "11 services + UNKNOWN \u2192 One-hot for explainability"
+      }
+    },
+    "conn_state": {
+      "decision": "KEEP",
+      "phase0_role": "Behavioral",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "none",
+        "description": "No placeholders (connection state always recorded)"
+      },
+      "encoding": {
+        "method": "one_hot",
+        "rationale": "14 states \u2192 Preserves connection patterns distinctly"
+      }
+    },
+    "src_port": {
+      "decision": "KEEP",
+      "phase0_role": "Contextual",
+      "data_type": "int64",
+      "placeholder_strategy": {
+        "type": "none",
+        "description": "No placeholders"
+      },
+      "scaling": {
+        "method": "standard_scale",
+        "rationale": "Moderate range (0-65535), uniform distribution \u2192 StandardScaler"
+      }
+    },
+    "dst_port": {
+      "decision": "KEEP",
+      "phase0_role": "Contextual",
+      "data_type": "int64",
+      "placeholder_strategy": {
+        "type": "none",
+        "description": "No placeholders"
+      },
+      "scaling": {
+        "method": "standard_scale",
+        "rationale": "Well-known ports vs ephemeral \u2192 StandardScaler"
+      }
+    },
+    "missed_bytes": {
+      "decision": "KEEP",
+      "phase0_role": "Behavioral",
+      "data_type": "int64",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "TCP-only: '-' for UDP/ICMP \u2192 Encode as 'NOT_APPLICABLE'"
+      },
+      "encoding": {
+        "method": "numerical_ordinal",
+        "rationale": "Numerical, but encode '-' as -1 first"
+      }
+    },
+    "dns_qclass": {
+      "decision": "KEEP",
+      "phase0_role": "Label/Ground Truth",
+      "data_type": "int64",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "DNS-only: '-' for TCP/UDP non-DNS \u2192 Encode as 'NOT_APPLICABLE'"
+      },
+      "encoding": {
+        "method": "one_hot",
+        "rationale": "~4 values + NOT_APPLICABLE \u2192 One-hot"
+      }
+    },
+    "dns_qtype": {
+      "decision": "KEEP",
+      "phase0_role": "Label/Ground Truth",
+      "data_type": "int64",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "DNS-only: '-' \u2192 'NOT_APPLICABLE'"
+      },
+      "encoding": {
+        "method": "one_hot",
+        "rationale": "~30 values + NOT_APPLICABLE \u2192 One-hot"
+      }
+    },
+    "dns_rcode": {
+      "decision": "KEEP",
+      "phase0_role": "Unknown - Needs Review",
+      "data_type": "int64",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "DNS-only: '-' \u2192 'NOT_APPLICABLE'"
+      },
+      "encoding": {
+        "method": "one_hot",
+        "rationale": "~16 values + NOT_APPLICABLE \u2192 One-hot"
+      }
+    },
+    "dns_AA": {
+      "decision": "KEEP",
+      "phase0_role": "Unknown - Needs Review",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "DNS-only: '-' \u2192 'NOT_APPLICABLE' (or map F/T/-)"
+      },
+      "encoding": {
+        "method": "one_hot",
+        "rationale": "3 values (T/F/NOT_APPLICABLE) \u2192 One-hot"
+      }
+    },
+    "dns_RD": {
+      "decision": "KEEP",
+      "phase0_role": "Unknown - Needs Review",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "DNS-only: '-' \u2192 'NOT_APPLICABLE'"
+      },
+      "encoding": {
+        "method": "one_hot",
+        "rationale": "3 values \u2192 One-hot"
+      }
+    },
+    "dns_RA": {
+      "decision": "KEEP",
+      "phase0_role": "Unknown - Needs Review",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "DNS-only: '-' \u2192 'NOT_APPLICABLE'"
+      },
+      "encoding": {
+        "method": "one_hot",
+        "rationale": "3 values \u2192 One-hot"
+      }
+    },
+    "dns_rejected": {
+      "decision": "KEEP",
+      "phase0_role": "Unknown - Needs Review",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "DNS-only: '-' \u2192 'NOT_APPLICABLE'"
+      },
+      "encoding": {
+        "method": "one_hot",
+        "rationale": "3 values \u2192 One-hot"
+      }
+    },
+    "http_trans_depth": {
+      "decision": "KEEP",
+      "phase0_role": "Unknown - Needs Review",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "HTTP-only: '-' \u2192 Encode as -1 (not applicable)"
+      },
+      "scaling": {
+        "method": "standard_scale_with_na",
+        "rationale": "After encoding '-' as -1 \u2192 StandardScaler"
+      }
+    },
+    "http_method": {
+      "decision": "KEEP",
+      "phase0_role": "Unknown - Needs Review",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "HTTP-only: '-' \u2192 Encode as 'NOT_APPLICABLE'"
+      },
+      "encoding": {
+        "method": "one_hot",
+        "rationale": "~10 methods + NOT_APPLICABLE \u2192 One-hot"
+      }
+    },
+    "http_version": {
+      "decision": "KEEP",
+      "phase0_role": "Unknown - Needs Review",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "HTTP-only: '-' \u2192 'NOT_APPLICABLE'"
+      },
+      "encoding": {
+        "method": "ordinal",
+        "rationale": "Natural order: HTTP/0.9 < HTTP/1.0 < HTTP/1.1 < HTTP/2.0 (+ NOT_APPLICABLE=-1)"
+      }
+    },
+    "http_request_body_len": {
+      "decision": "KEEP",
+      "phase0_role": "Unknown - Needs Review",
+      "data_type": "int64",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "HTTP-only: '-' \u2192 Encode as -1"
+      },
+      "scaling": {
+        "method": "log_scale_with_na",
+        "rationale": "After encoding '-' as -1 \u2192 Apply log(x+2) (shifts -1\u21920, 0\u21921)"
+      }
+    },
+    "http_response_body_len": {
+      "decision": "KEEP",
+      "phase0_role": "Unknown - Needs Review",
+      "data_type": "int64",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "HTTP-only: '-' \u2192 Encode as -1"
+      },
+      "scaling": {
+        "method": "log_scale_with_na",
+        "rationale": "After encoding '-' as -1 \u2192 Apply log(x+2)"
+      }
+    },
+    "http_status_code": {
+      "decision": "KEEP",
+      "phase0_role": "Unknown - Needs Review",
+      "data_type": "int64",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "HTTP-only: '-' \u2192 'NOT_APPLICABLE' or 0"
+      },
+      "encoding": {
+        "method": "ordinal",
+        "rationale": "Natural order: 100s < 200s < 300s < 400s < 500s (+ NOT_APPLICABLE=0)"
+      }
+    },
+    "http_orig_mime_types": {
+      "decision": "KEEP",
+      "phase0_role": "Label/Ground Truth",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "HTTP-only: '-' \u2192 'NOT_APPLICABLE'"
+      },
+      "encoding": {
+        "method": "one_hot",
+        "rationale": "~30 MIME types + NOT_APPLICABLE \u2192 One-hot"
+      }
+    },
+    "http_resp_mime_types": {
+      "decision": "KEEP",
+      "phase0_role": "Label/Ground Truth",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "HTTP-only: '-' \u2192 'NOT_APPLICABLE'"
+      },
+      "encoding": {
+        "method": "one_hot",
+        "rationale": "~30 MIME types + NOT_APPLICABLE \u2192 One-hot"
+      }
+    },
+    "ssl_version": {
+      "decision": "KEEP",
+      "phase0_role": "Unknown - Needs Review",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "SSL-only: '-' \u2192 'NOT_APPLICABLE'"
+      },
+      "encoding": {
+        "method": "ordinal",
+        "rationale": "Natural order: SSLv2 < SSLv3 < TLS1.0 < TLS1.1 < TLS1.2 < TLS1.3 (+ NOT_APPLICABLE=-1)"
+      }
+    },
+    "ssl_cipher": {
+      "decision": "KEEP",
+      "phase0_role": "Unknown - Needs Review",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "SSL-only: '-' \u2192 'NOT_APPLICABLE'"
+      },
+      "encoding": {
+        "method": "one_hot",
+        "rationale": "~50 cipher suites + NOT_APPLICABLE \u2192 One-hot for crypto patterns"
+      }
+    },
+    "ssl_resumed": {
+      "decision": "KEEP",
+      "phase0_role": "Unknown - Needs Review",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "SSL-only: '-' \u2192 'NOT_APPLICABLE'"
+      },
+      "encoding": {
+        "method": "one_hot",
+        "rationale": "3 values (T/F/NOT_APPLICABLE) \u2192 One-hot"
+      }
+    },
+    "ssl_established": {
+      "decision": "KEEP",
+      "phase0_role": "Unknown - Needs Review",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "protocol_na",
+        "description": "SSL-only: '-' \u2192 'NOT_APPLICABLE'"
+      },
+      "encoding": {
+        "method": "one_hot",
+        "rationale": "3 values (T/F/NOT_APPLICABLE) \u2192 One-hot"
+      }
+    },
+    "weird_notice": {
+      "decision": "KEEP",
+      "phase0_role": "Unknown - Needs Review",
+      "data_type": "object",
+      "placeholder_strategy": {
+        "type": "boolean_false",
+        "description": "'-' means no weird event \u2192 Encode as False/0"
+      },
+      "encoding": {
+        "method": "binary",
+        "rationale": "Boolean: True/False (no encoding needed if already 1/0)"
+      }
+    }
+  }
+}

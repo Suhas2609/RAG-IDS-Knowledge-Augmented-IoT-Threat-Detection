@@ -224,8 +224,14 @@ site/
 # PROJECT-SPECIFIC
 # ============================================================================
 
-# Archived single-dataset trial (contains large artifacts and notebooks)
-solo_dataset_trial/
+# Archived single-dataset trial - EXCLUDE LARGE DATA FILES ONLY
+solo_dataset_trial/artifacts/chromadb/
+solo_dataset_trial/artifacts/phase_2/*.parquet
+solo_dataset_trial/artifacts/phase_2/*.csv
+solo_dataset_trial/artifacts/phase_2/*.csv.gz
+solo_dataset_trial/artifacts/phase_2/fitted_scalers.pkl
+solo_dataset_trial/artifacts/reports/
+solo_dataset_trial/artifacts/validation/
 
 # Old restructure scripts (keep for reference but don't track changes)
 restructure_project.py
