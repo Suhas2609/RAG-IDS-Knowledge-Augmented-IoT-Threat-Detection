@@ -1,0 +1,4 @@
+dataset,rows_written,files_processed,parquet_size_mb
+TON-IoT,22339021,N/A (restored from Parquet metadata),236.8
+IoT-23,325309946,N/A (restored from Parquet metadata),517.8
+Bot-IoT,3668522,N/A (restored from Parquet metadata),78.6

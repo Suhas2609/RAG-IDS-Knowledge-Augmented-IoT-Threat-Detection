@@ -1,0 +1,216 @@
+{
+  "phase": "Phase_1_1_Universal_Schema_Alignment",
+  "generated": "2026-02-23T23:49:03.281278",
+  "total_columns": 48,
+  "columns": [
+    "dataset_source",
+    "univ_duration",
+    "univ_src_bytes",
+    "univ_dst_bytes",
+    "univ_src_pkts",
+    "univ_dst_pkts",
+    "univ_proto",
+    "univ_state",
+    "univ_src_port",
+    "univ_dst_port",
+    "univ_has_src_port",
+    "univ_has_dst_port",
+    "univ_label_binary",
+    "univ_label_multiclass",
+    "univ_label_str",
+    "zeek_service",
+    "zeek_missed_bytes",
+    "zeek_history",
+    "zeek_src_ip_bytes",
+    "zeek_dst_ip_bytes",
+    "toniot_dns_qclass",
+    "toniot_dns_qtype",
+    "toniot_dns_rcode",
+    "toniot_http_request_body_len",
+    "toniot_http_response_body_len",
+    "toniot_http_status_code",
+    "botiot_mean",
+    "botiot_stddev",
+    "botiot_sum",
+    "botiot_min",
+    "botiot_max",
+    "botiot_rate",
+    "botiot_srate",
+    "botiot_drate",
+    "botiot_TnBPSrcIP",
+    "botiot_TnBPDstIP",
+    "botiot_TnP_PSrcIP",
+    "botiot_TnP_PDstIP",
+    "botiot_TnP_PerProto",
+    "botiot_TnP_Per_Dport",
+    "botiot_AR_P_Proto_P_SrcIP",
+    "botiot_AR_P_Proto_P_DstIP",
+    "botiot_N_IN_Conn_P_DstIP",
+    "botiot_N_IN_Conn_P_SrcIP",
+    "botiot_AR_P_Proto_P_Sport",
+    "botiot_AR_P_Proto_P_Dport",
+    "botiot_Pkts_P_State_P_Protocol_P_DestIP",
+    "botiot_Pkts_P_State_P_Protocol_P_SrcIP"
+  ],
+  "group_a_columns": [
+    "dataset_source",
+    "univ_duration",
+    "univ_src_bytes",
+    "univ_dst_bytes",
+    "univ_src_pkts",
+    "univ_dst_pkts",
+    "univ_proto",
+    "univ_state",
+    "univ_src_port",
+    "univ_dst_port",
+    "univ_has_src_port",
+    "univ_has_dst_port",
+    "univ_label_binary",
+    "univ_label_multiclass",
+    "univ_label_str"
+  ],
+  "group_b_zeek_columns": [
+    "zeek_service",
+    "zeek_missed_bytes",
+    "zeek_history",
+    "zeek_src_ip_bytes",
+    "zeek_dst_ip_bytes"
+  ],
+  "group_b_toniot_columns": [
+    "toniot_dns_qclass",
+    "toniot_dns_qtype",
+    "toniot_dns_rcode",
+    "toniot_http_request_body_len",
+    "toniot_http_response_body_len",
+    "toniot_http_status_code"
+  ],
+  "group_b_botiot_columns": [
+    "botiot_mean",
+    "botiot_stddev",
+    "botiot_sum",
+    "botiot_min",
+    "botiot_max",
+    "botiot_rate",
+    "botiot_srate",
+    "botiot_drate",
+    "botiot_TnBPSrcIP",
+    "botiot_TnBPDstIP",
+    "botiot_TnP_PSrcIP",
+    "botiot_TnP_PDstIP",
+    "botiot_TnP_PerProto",
+    "botiot_TnP_Per_Dport",
+    "botiot_AR_P_Proto_P_SrcIP",
+    "botiot_AR_P_Proto_P_DstIP",
+    "botiot_N_IN_Conn_P_DstIP",
+    "botiot_N_IN_Conn_P_SrcIP",
+    "botiot_AR_P_Proto_P_Sport",
+    "botiot_AR_P_Proto_P_Dport",
+    "botiot_Pkts_P_State_P_Protocol_P_DestIP",
+    "botiot_Pkts_P_State_P_Protocol_P_SrcIP"
+  ],
+  "label_columns": [
+    "univ_label_binary",
+    "univ_label_multiclass",
+    "univ_label_str"
+  ],
+  "sentinel_rules": {
+    "categorical_missing": "unknown",
+    "numerical_float_missing": -1.0,
+    "numerical_int_missing": -1,
+    "port_absent_sentinel": -1,
+    "zeek_dash_sentinel": "-",
+    "zeek_question_sentinel": "?"
+  },
+  "state_vocabulary": [
+    "attempt",
+    "established",
+    "other",
+    "rejected",
+    "unknown"
+  ],
+  "proto_vocabulary": [
+    "arp",
+    "icmp",
+    "other",
+    "tcp",
+    "udp"
+  ],
+  "label_taxonomy": {
+    "0": "Normal",
+    "1": "Reconnaissance",
+    "2": "Volumetric_Attack",
+    "3": "C2_Botnet",
+    "4": "Exploit_and_Theft"
+  },
+  "parquet_files": {
+    "toniot": "c:\\Users\\suhas\\OneDrive\\Desktop\\Capstone\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\main_folder\\data\\unified\\toniot_aligned.parquet",
+    "iot23": "c:\\Users\\suhas\\OneDrive\\Desktop\\Capstone\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\main_folder\\data\\unified\\iot23_aligned.parquet",
+    "botiot": "c:\\Users\\suhas\\OneDrive\\Desktop\\Capstone\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\main_folder\\data\\unified\\botiot_aligned.parquet"
+  },
+  "source_column_mappings": {
+    "group_a": {
+      "toniot": {
+        "duration": "univ_duration",
+        "src_bytes": "univ_src_bytes",
+        "dst_bytes": "univ_dst_bytes",
+        "src_pkts": "univ_src_pkts",
+        "dst_pkts": "univ_dst_pkts",
+        "proto": "univ_proto",
+        "conn_state": "univ_state",
+        "src_port": "univ_src_port",
+        "dst_port": "univ_dst_port"
+      },
+      "iot23": {
+        "duration": "univ_duration",
+        "orig_bytes": "univ_src_bytes",
+        "resp_bytes": "univ_dst_bytes",
+        "orig_pkts": "univ_src_pkts",
+        "resp_pkts": "univ_dst_pkts",
+        "proto": "univ_proto",
+        "conn_state": "univ_state",
+        "id.orig_p": "univ_src_port",
+        "id.resp_p": "univ_dst_port"
+      },
+      "botiot": {
+        "dur": "univ_duration",
+        "sbytes": "univ_src_bytes",
+        "dbytes": "univ_dst_bytes",
+        "spkts": "univ_src_pkts",
+        "dpkts": "univ_dst_pkts",
+        "proto": "univ_proto",
+        "state": "univ_state",
+        "sport": "univ_src_port",
+        "dport": "univ_dst_port"
+      }
+    }
+  },
+  "validation": {
+    "TON-IoT": {
+      "columns": 48,
+      "col_order_ok": true,
+      "nan_cols": [
+        "dataset_source"
+      ],
+      "dtype_issues": [],
+      "pct_unmapped_labels": 0.0
+    },
+    "IoT-23": {
+      "columns": 48,
+      "col_order_ok": true,
+      "nan_cols": [
+        "dataset_source"
+      ],
+      "dtype_issues": [],
+      "pct_unmapped_labels": 0.0
+    },
+    "Bot-IoT": {
+      "columns": 48,
+      "col_order_ok": true,
+      "nan_cols": [
+        "dataset_source"
+      ],
+      "dtype_issues": [],
+      "pct_unmapped_labels": 0.0
+    }
+  }
+}
