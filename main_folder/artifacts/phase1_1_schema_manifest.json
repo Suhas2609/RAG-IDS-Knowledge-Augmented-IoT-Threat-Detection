@@ -1,6 +1,6 @@
 {
   "phase": "Phase_1_1_Universal_Schema_Alignment",
-  "generated": "2026-02-24T10:13:58.981514",
+  "generated": "2026-02-24T10:21:50.122268",
   "total_columns": 48,
   "columns": [
     "dataset_source",
@@ -147,7 +147,7 @@
   "parquet_files": {
     "toniot": "c:\\Users\\suhas\\OneDrive\\Desktop\\Capstone\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\main_folder\\data\\unified\\toniot_aligned.parquet",
     "iot23": "c:\\Users\\suhas\\OneDrive\\Desktop\\Capstone\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\main_folder\\data\\unified\\iot23_complete.parquet",
-    "botiot": "c:\\Users\\suhas\\OneDrive\\Desktop\\Capstone\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\main_folder\\data\\unified\\botiot_aligned.parquet"
+    "botiot": "c:\\Users\\suhas\\OneDrive\\Desktop\\Capstone\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\main_folder\\data\\unified\\botiot_complete.parquet"
   },
   "source_column_mappings": {
     "group_a": {
