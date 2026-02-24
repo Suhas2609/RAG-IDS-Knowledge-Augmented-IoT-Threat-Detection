@@ -14,6 +14,10 @@ univ_has_dst_port,Group A,"['toniot', 'iot23', 'botiot']",none,False
 univ_label_binary,Group A,"['toniot', 'iot23', 'botiot']",none,False
 univ_label_multiclass,Group A,"['toniot', 'iot23', 'botiot']",none,False
 univ_label_str,Group A,"['toniot', 'iot23', 'botiot']",none,True
+univ_specific_attack,Label/Context,"['toniot', 'iot23', 'botiot']",none,True
+meta_src_ip,RAG / Metadata,"['toniot', 'iot23', 'botiot']",none,True
+meta_dst_ip,RAG / Metadata,"['toniot', 'iot23', 'botiot']",none,True
+meta_timestamp,RAG / Metadata,"['toniot', 'iot23', 'botiot']",none,False
 zeek_service,Group B / Zeek,"['toniot', 'iot23']",unknown,True
 zeek_missed_bytes,Group B / Zeek,"['toniot', 'iot23']",-1,False
 zeek_history,Group B / Zeek,['iot23'],unknown,True

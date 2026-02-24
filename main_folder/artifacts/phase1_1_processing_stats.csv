@@ -1,4 +1,4 @@
-dataset,rows_written,files_processed,parquet_size_mb
-TON-IoT,22339021,N/A (restored from Parquet metadata),236.8
-IoT-23,325309946,N/A (restored from Parquet metadata),517.8
-Bot-IoT,3668522,N/A (restored from Parquet metadata),78.6
+dataset,total_rows,n_files,elapsed_sec,size_mb,output_path
+TON-IoT,22339021,23,125.0,258.1,c:\Users\suhas\OneDrive\Desktop\Capstone\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\main_folder\data\unified\toniot_aligned.parquet
+IoT-23,325309946,23,5747.8,5830.1,c:\Users\suhas\OneDrive\Desktop\Capstone\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\main_folder\data\unified\iot23_complete.parquet
+Bot-IoT,3668522,4,0.0,78.6,c:\Users\suhas\OneDrive\Desktop\Capstone\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\main_folder\data\unified\botiot_aligned.parquet

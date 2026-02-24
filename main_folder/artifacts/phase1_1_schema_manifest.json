@@ -1,7 +1,7 @@
 {
   "phase": "Phase_1_1_Universal_Schema_Alignment",
-  "generated": "2026-02-24T10:21:50.122268",
-  "total_columns": 48,
+  "generated": "2026-02-24T12:31:16.098932",
+  "total_columns": 52,
   "columns": [
     "dataset_source",
     "univ_duration",
@@ -18,6 +18,10 @@
     "univ_label_binary",
     "univ_label_multiclass",
     "univ_label_str",
+    "univ_specific_attack",
+    "meta_src_ip",
+    "meta_dst_ip",
+    "meta_timestamp",
     "zeek_service",
     "zeek_missed_bytes",
     "zeek_history",
@@ -113,6 +117,12 @@
     "univ_label_multiclass",
     "univ_label_str"
   ],
+  "context_columns": [
+    "univ_specific_attack",
+    "meta_src_ip",
+    "meta_dst_ip",
+    "meta_timestamp"
+  ],
   "sentinel_rules": {
     "categorical_absent_feature": "<absent>",
     "categorical_observed_unknown": "unknown",
@@ -147,7 +157,7 @@
   "parquet_files": {
     "toniot": "c:\\Users\\suhas\\OneDrive\\Desktop\\Capstone\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\main_folder\\data\\unified\\toniot_aligned.parquet",
     "iot23": "c:\\Users\\suhas\\OneDrive\\Desktop\\Capstone\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\main_folder\\data\\unified\\iot23_complete.parquet",
-    "botiot": "c:\\Users\\suhas\\OneDrive\\Desktop\\Capstone\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\main_folder\\data\\unified\\botiot_complete.parquet"
+    "botiot": "c:\\Users\\suhas\\OneDrive\\Desktop\\Capstone\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\main_folder\\data\\unified\\botiot_52col.parquet"
   },
   "source_column_mappings": {
     "group_a": {
@@ -188,7 +198,7 @@
   },
   "validation": {
     "TON-IoT": {
-      "columns": 48,
+      "columns": 52,
       "col_order_ok": true,
       "nan_cols": [
         "dataset_source"
@@ -197,7 +207,7 @@
       "pct_unmapped_labels": 0.0
     },
     "IoT-23": {
-      "columns": 48,
+      "columns": 52,
       "col_order_ok": true,
       "nan_cols": [
         "dataset_source"
@@ -206,7 +216,7 @@
       "pct_unmapped_labels": 0.0
     },
     "Bot-IoT": {
-      "columns": 48,
+      "columns": 52,
       "col_order_ok": true,
       "nan_cols": [
         "dataset_source"
