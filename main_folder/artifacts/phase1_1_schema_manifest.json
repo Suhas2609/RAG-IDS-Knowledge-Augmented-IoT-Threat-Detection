@@ -1,6 +1,6 @@
 {
   "phase": "Phase_1_1_Universal_Schema_Alignment",
-  "generated": "2026-02-23T23:49:03.281278",
+  "generated": "2026-02-24T10:13:58.981514",
   "total_columns": 48,
   "columns": [
     "dataset_source",
@@ -114,12 +114,14 @@
     "univ_label_str"
   ],
   "sentinel_rules": {
-    "categorical_missing": "unknown",
+    "categorical_absent_feature": "<absent>",
+    "categorical_observed_unknown": "unknown",
     "numerical_float_missing": -1.0,
     "numerical_int_missing": -1,
     "port_absent_sentinel": -1,
     "zeek_dash_sentinel": "-",
-    "zeek_question_sentinel": "?"
+    "zeek_question_sentinel": "?",
+    "note": "<absent> = feature not collected by this dataset; unknown = feature collected but value undetermined"
   },
   "state_vocabulary": [
     "attempt",
@@ -144,7 +146,7 @@
   },
   "parquet_files": {
     "toniot": "c:\\Users\\suhas\\OneDrive\\Desktop\\Capstone\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\main_folder\\data\\unified\\toniot_aligned.parquet",
-    "iot23": "c:\\Users\\suhas\\OneDrive\\Desktop\\Capstone\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\main_folder\\data\\unified\\iot23_aligned.parquet",
+    "iot23": "c:\\Users\\suhas\\OneDrive\\Desktop\\Capstone\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\main_folder\\data\\unified\\iot23_complete.parquet",
     "botiot": "c:\\Users\\suhas\\OneDrive\\Desktop\\Capstone\\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\\main_folder\\data\\unified\\botiot_aligned.parquet"
   },
   "source_column_mappings": {
