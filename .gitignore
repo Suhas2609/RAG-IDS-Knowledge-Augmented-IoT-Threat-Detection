@@ -3,13 +3,9 @@
 # ============================================================================
 
 # ============================================================================
-# LARGE DATA FILES (DO NOT COMMIT TO GITHUB)
+# LARGE DATA FILES - NEVER COMMIT
 # ============================================================================
-
-# Dataset files (raw data files excluded; analysis artifacts in main_folder/artifacts/ are allowed)
 *.csv
-# Allow Phase 0 analysis artifact CSVs (small, human-readable summaries — NOT raw data)
-!main_folder/artifacts/*.csv
 *.csv.gz
 *.parquet
 *.h5
@@ -19,30 +15,27 @@
 *.pickle
 *.npy
 *.npz
+*.joblib
 
-# Specific data directories
+# Explicit data directories
 data/
-solo_dataset_trial/artifacts/chromadb/
-solo_dataset_trial/artifacts/phase_2/
-generalized_rag_ids/data/
+main_folder/data/
+main_folder/chromadb_store_v4/
+main_folder/chromadb_store_v51/
+main_folder/artifacts/scalers/
+solo_dataset_trial/
 
-# Backup folders
-backup_*/
-temp_*/
+# Allow specific small artifacts
+!main_folder/artifacts/*.png
+!main_folder/artifacts/*.md
+!main_folder/Phase_2/outputs/*.png
 
 # ============================================================================
 # PYTHON
 # ============================================================================
-
-# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*$py.class
-
-# C extensions
 *.so
-
-# Distribution / packaging
 .Python
 build/
 develop-eggs/
@@ -61,16 +54,21 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-
-# PyInstaller
 *.manifest
 *.spec
-
-# Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-# Unit test / coverage reports
+# ============================================================================
+# TESTING & COVERAGE
+# ============================================================================
 htmlcov/
 .tox/
 .nox/
@@ -85,41 +83,21 @@ coverage.xml
 .pytest_cache/
 cover/
 
-# Virtual environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
 # ============================================================================
-# JUPYTER NOTEBOOK
+# JUPYTER
 # ============================================================================
-
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints
+.ipynb_checkpoints/
 */.ipynb_checkpoints/*
-
-# Jupyter Notebook outputs (optional - uncomment if you want to ignore all outputs)
-# *.ipynb
-
-# IPython
 profile_default/
 ipython_config.py
 
 # ============================================================================
 # DATABASE & VECTOR STORES
 # ============================================================================
-
-# ChromaDB
 chroma.sqlite3
 chroma.sqlite3-*
 *.duckdb
 *.duckdb.wal
-
-# SQLite
 *.db
 *.sqlite
 *.sqlite3
@@ -127,48 +105,32 @@ chroma.sqlite3-*
 # ============================================================================
 # IDE & EDITOR
 # ============================================================================
-
-# VS Code (keep settings but ignore workspace state)
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-!.vscode/*.code-snippets
 .history/
 *.code-workspace
-
-# PyCharm
 .idea/
 *.iml
 *.iws
 .idea_modules/
-
-# Sublime Text
 *.sublime-project
 *.sublime-workspace
 
 # ============================================================================
-# OPERATING SYSTEM
+# OS FILES
 # ============================================================================
-
-# macOS
 .DS_Store
 .AppleDouble
 .LSOverride
 ._*
-
-# Windows
 Thumbs.db
-Thumbs.db:encryptable
 ehthumbs.db
-ehthumbs_vista.db
 *.stackdump
 [Dd]esktop.ini
-$RECYCLE.BIN/
 *.lnk
-
-# Linux
 *~
 .fuse_hidden*
 .directory
@@ -176,93 +138,33 @@ $RECYCLE.BIN/
 .nfs*
 
 # ============================================================================
-# LOGS & TEMP FILES
+# LOGS & TEMP
 # ============================================================================
-
-# Log files
 *.log
 logs/
 *.log.*
-
-# Temporary files
 *.tmp
 *.temp
 *.swp
 *.swo
-*~
+backup_*/
+temp_*/
 
 # ============================================================================
-# MODEL & ARTIFACTS (Large Files)
+# MODELS
 # ============================================================================
-
-# Machine learning models
-*.h5
 *.keras
 *.pt
 *.pth
 *.onnx
 *.tflite
 *.pb
-*.joblib
-
-# Fitted scalers and encoders (keep small ones in git for reproducibility)
-# Uncomment if scalers are too large:
-# *.pkl
-# fitted_*.pkl
 
 # ============================================================================
-# DOCUMENTATION BUILD
+# SECURITY
 # ============================================================================
-
-# Sphinx documentation
-docs/_build/
-docs/_static/
-docs/_templates/
-
-# MkDocs
-site/
-
-# ============================================================================
-# PROJECT-SPECIFIC
-# ============================================================================
-
-# Archived single-dataset trial - EXCLUDE LARGE DATA FILES ONLY
-solo_dataset_trial/artifacts/chromadb/
-solo_dataset_trial/artifacts/phase_2/*.parquet
-solo_dataset_trial/artifacts/phase_2/*.csv
-solo_dataset_trial/artifacts/phase_2/*.csv.gz
-solo_dataset_trial/artifacts/phase_2/fitted_scalers.pkl
-solo_dataset_trial/artifacts/reports/
-solo_dataset_trial/artifacts/validation/
-
-# Old restructure scripts (keep for reference but don't track changes)
-restructure_project.py
-cleanup_and_finish_restructure.py
-
-# Large phase reports (may be cloud-only in OneDrive)
-**/phase_0/*_Report.md
-**/phase_1/*_Report.md
-
-# Python script artifacts
-*.pyc
-*.pyo
-*.pyd
-
-# Experimental notebooks
-experiments/
-scratch/
-test_*.ipynb
-
-# ============================================================================
-# SECURITY & CREDENTIALS
-# ============================================================================
-
-# Environment variables
-.env
 .env.*
 !.env.example
-
-# API keys and secrets
 secrets.json
 credentials.json
 *.key
@@ -270,10 +172,13 @@ credentials.json
 *.cert
 
 # ============================================================================
-# CLOUD SYNC (OneDrive specific)
+# MISC
 # ============================================================================
-
-# OneDrive temp files
 ~$*
-*.tmp
 desktop.ini
+experiments/
+scratch/
+test_*.ipynb
+restructure_project.py
+cleanup_and_finish_restructure.py
+.github/appmod/

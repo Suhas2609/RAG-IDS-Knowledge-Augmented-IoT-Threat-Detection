@@ -1,7 +1,0 @@
-dataset,class_id,class_name,sample_count,sample_pct,total_rows_in_file
-TON-IoT,0,Normal,207924,41.5848,22339021
-TON-IoT,1,Reconnaissance,292076,58.4152,22339021
-IoT-23,0,Normal,229348,45.8696,325309946
-IoT-23,1,Reconnaissance,270646,54.1292,325309946
-IoT-23,3,C2_Botnet,6,0.0012,325309946
-Bot-IoT,2,Volumetric_Attack,500000,100.0,3668522

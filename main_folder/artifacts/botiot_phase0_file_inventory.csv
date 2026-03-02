@@ -1,5 +1,0 @@
-file,exists,size_mb,path
-UNSW_2018_IoT_Botnet_Full5pc_1.csv,True,259.7,C:\Users\suhas\OneDrive\Desktop\Capstone\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\main_folder\data\bot_iot\UNSW_2018_IoT_Botnet_Full5pc_1.csv
-UNSW_2018_IoT_Botnet_Full5pc_2.csv,True,260.4,C:\Users\suhas\OneDrive\Desktop\Capstone\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\main_folder\data\bot_iot\UNSW_2018_IoT_Botnet_Full5pc_2.csv
-UNSW_2018_IoT_Botnet_Full5pc_3.csv,True,269.1,C:\Users\suhas\OneDrive\Desktop\Capstone\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\main_folder\data\bot_iot\UNSW_2018_IoT_Botnet_Full5pc_3.csv
-UNSW_2018_IoT_Botnet_Full5pc_4.csv,True,180.8,C:\Users\suhas\OneDrive\Desktop\Capstone\RAG-IDS-Knowledge-Augmented-IoT-Threat-Detection\main_folder\data\bot_iot\UNSW_2018_IoT_Botnet_Full5pc_4.csv
